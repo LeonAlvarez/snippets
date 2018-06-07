@@ -5,10 +5,12 @@ import config from "../../data/SiteConfig";
 
 class Header extends React.Component {
   renderMenuItem(item) {
-    const link = {path: item , label : item.toUpperCase()};
-    return (<Link to={`tech/${lodash.kebabCase(link.path)}`}
-            className="block mt-4 md:inline-block md:mt-0 mr-6 no-underline text-white">
-            {link.label}
+    const link = { path: item , label : item.toUpperCase()};
+    return (<Link
+      to={`/categories/${lodash.kebabCase(link.path)}`} key={link.path}
+      className="block mt-4 md:inline-block md:mt-0 mr-6 no-underline text-white"
+    >
+      {link.label}
             </Link>);
   }
   render() {
@@ -36,9 +38,9 @@ class Header extends React.Component {
             className="hidden md:flex md:items-center w-full md:w-auto"
           >
             <div className="text-sm">
-            {
-              this.props.categories.map(category => this.renderMenuItem(category))
-            }
+              {
+                this.props.categories.map(category => this.renderMenuItem(category))
+              }
             </div>
           </div>
         </div>

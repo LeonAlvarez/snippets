@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import config from "../../data/SiteConfig";
 import Header from "./Header";
 import Footer from "./Footer";
+import Sidebar from "./Sidebar";
 import "./index.css";
 import "../styles/main.scss";
 
@@ -50,8 +51,8 @@ export default class MainLayout extends React.Component {
   }
   getTags() {
     const tags = new Set(
-        this.props.data.allMarkdownRemark.edges
-          .map(edge => edge.node.frontmatter.tags)
+      [].concat(...this.props.data.allMarkdownRemark.edges
+          .map(edge => edge.node.frontmatter.tags))
     );
     return Array.from(tags);
   }
@@ -65,10 +66,12 @@ export default class MainLayout extends React.Component {
           <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
           <meta name="description" content={config.siteDescription} />
         </Helmet>
-        
-        <Header categories={categories}/>
-        {children()}
-        <Footer tags={tags}/>
+        <Header categories={categories} />
+        <div className="min-h-screen md:flex">
+          <Sidebar tags={tags} />
+          {children()}
+        </div>
+        <Footer tags={tags} />
       </div>
     );
   }
