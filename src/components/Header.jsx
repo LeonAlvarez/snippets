@@ -2,17 +2,37 @@ import React from "react";
 import Link from "gatsby-link";
 
 class Header extends React.Component {
+  renderMenuItem(item) {
+    return <Link to="{item.path}"
+            className="block mt-4 md:inline-block md:mt-0 mr-6 no-underline text-white">
+            {item.label}
+            </Link>;
+  }
   render() {
+    const categories = [
+      {
+        path: 'laravel',
+        label: 'Laravel',
+      },
+      {
+        path: 'js',
+        label: 'JS',
+      },
+      {
+        path: 'css',
+        label: 'CSS',
+      }
+    ];
     return (
-      <nav className="bg-yellow">
+      <nav className="header">
         <div className="flex flex-wrap items-center justify-between max-w-xl mx-auto p-4 md:p-8">
-          <Link to="/" className="flex items-center no-underline text-black">
-            <span className="font-bold text-xl tracking-tight">
-                Weird JS
+          <Link to="/" className="flex items-center no-underline">
+            <span className="font-bold text-xl tracking-tight text-white">
+                Snippets
             </span>
           </Link>
 
-          <button className="block md:hidden border border-white flex items-center px-3 py-2 rounded text-black">
+          <button className="block md:hidden border border-white flex items-center px-3 py-2 rounded">
             <svg
               className="fill-current h-3 w-3"
               viewBox="0 0 20 20"
@@ -28,26 +48,9 @@ class Header extends React.Component {
             className="hidden md:flex md:items-center w-full md:w-auto"
           >
             <div className="text-sm">
-              <Link
-                  to="/"
-                  className="block mt-4 md:inline-block md:mt-0 mr-6 no-underline text-black"
-                >
-                    Home
-                </Link>
-
-              <Link
-                  to="/about"
-                  className="block md:inline-block mt-4 md:mt-0 mr-6 no-underline text-black"
-                >
-                    About
-                </Link>
-
-              <Link
-                  to="/contact"
-                  className="block md:inline-block mt-4 md:mt-0 no-underline text-black"
-                >
-                    Contact
-                </Link>
+              {
+                categories.map(category => this.renderMenuItem(category))
+              }
             </div>
           </div>
         </div>

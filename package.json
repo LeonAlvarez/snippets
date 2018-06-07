@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-advanced",
-  "description": "GatsbyJS starter that includes examples for advanced use cases.",
-  "version": "1.1.0",
-  "author": "Ruben Harutyunyan <vagr9k@gmail.com>",
+  "name": "code-snippets",
+  "description": "Coding snnippets catalog",
+  "version": "0.1.1-dev",
+  "author": "Leon Alavarez Del Canto <leon@leon-design.es>",
   "dependencies": {
     "babel-plugin-lodash": "^3.3.2",
     "gatsby": "^1.9.178",
@@ -14,6 +14,7 @@
     "gatsby-plugin-nprogress": "^1.0.11",
     "gatsby-plugin-offline": "^1.0.13",
     "gatsby-plugin-react-helmet": "^2.0.4",
+    "gatsby-plugin-sass": "^1.0.26",
     "gatsby-plugin-sharp": "^1.6.27",
     "gatsby-plugin-sitemap": "^1.2.11",
     "gatsby-plugin-twitter": "^1.0.16",

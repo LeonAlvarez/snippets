@@ -1,9 +1,9 @@
 ---
-title: "Big Test"
+title: "Big Test2"
 cover: "https://unsplash.it/400/300/?random?BigTest"
-category: "laravel"
+category: "js"
 date: "01/03/2018"
-slug: "Big-Sample_Test"
+slug: "Big-Sample_Test2"
 tags:
     - test
     - huge
