@@ -4,7 +4,7 @@ import Link from "gatsby-link";
 class Footer extends React.Component {
   render() {
     return (
-      <div className="pin-b w-full bg-grey-lighter p-8">
+      <div className="absolute pin-b w-full bg-grey-lighter p-8">
         <div className="sm:flex mb-4">
           <div className="sm:w-1/4 h-auto">
               <div className="text-orange mb-2">Arrayy</div>
