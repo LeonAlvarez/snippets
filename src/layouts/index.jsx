@@ -1,8 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
 import config from "../../data/SiteConfig";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "./Header";
+import Footer from "./Footer";
 import "./index.css";
 import "../styles/main.scss";
 
@@ -41,18 +41,48 @@ export default class MainLayout extends React.Component {
     }
     return title;
   }
+  getCategories() {
+    const categories = new Set(
+        this.props.data.allMarkdownRemark.edges
+          .map(edge => edge.node.frontmatter.category)
+    );
+    return Array.from(categories);
+  }
   render() {
     const { children } = this.props; 
+    const categories = this.getCategories();
     return (
       <div>
         <Helmet>
           <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
           <meta name="description" content={config.siteDescription} />
         </Helmet>
-        <Header/>
+        
+        <Header categories={categories}/>
         {children()}
         <Footer/>
       </div>
     );
   }
-}
+};
+
+
+/* eslint no-undef: "off"*/
+export const postCategoriesAndTags = graphql`
+  query IndexQuery2 {
+    allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            category
+            tags
+            title
+          }
+        }
+      }
+    }
+  }
+`;

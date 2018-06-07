@@ -1,34 +1,23 @@
 import React from "react";
 import Link from "gatsby-link";
+import lodash from "lodash";
+import config from "../../data/SiteConfig";
 
 class Header extends React.Component {
   renderMenuItem(item) {
-    return <Link to="{item.path}"
+    const link = {path: item , label : item.toUpperCase()};
+    return (<Link to={`tech/${lodash.kebabCase(link.path)}`}
             className="block mt-4 md:inline-block md:mt-0 mr-6 no-underline text-white">
-            {item.label}
-            </Link>;
+            {link.label}
+            </Link>);
   }
   render() {
-    const categories = [
-      {
-        path: 'laravel',
-        label: 'Laravel',
-      },
-      {
-        path: 'js',
-        label: 'JS',
-      },
-      {
-        path: 'css',
-        label: 'CSS',
-      }
-    ];
-    return (
+    return ( 
       <nav className="header">
         <div className="flex flex-wrap items-center justify-between max-w-xl mx-auto p-4 md:p-8">
           <Link to="/" className="flex items-center no-underline">
             <span className="font-bold text-xl tracking-tight text-white">
-                Snippets
+              {config.siteTitle}
             </span>
           </Link>
 
@@ -42,15 +31,14 @@ class Header extends React.Component {
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
-
           <div
             id="nav"
             className="hidden md:flex md:items-center w-full md:w-auto"
           >
             <div className="text-sm">
-              {
-                categories.map(category => this.renderMenuItem(category))
-              }
+            {
+              this.props.categories.map(category => this.renderMenuItem(category))
+            }
             </div>
           </div>
         </div>
@@ -60,3 +48,4 @@ class Header extends React.Component {
 };
 
 export default Header;
+
