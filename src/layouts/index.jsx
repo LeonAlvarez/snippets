@@ -48,9 +48,17 @@ export default class MainLayout extends React.Component {
     );
     return Array.from(categories);
   }
+  getTags() {
+    const tags = new Set(
+        this.props.data.allMarkdownRemark.edges
+          .map(edge => edge.node.frontmatter.tags)
+    );
+    return Array.from(tags);
+  }
   render() {
     const { children } = this.props; 
     const categories = this.getCategories();
+    const tags = this.getTags();
     return (
       <div>
         <Helmet>
@@ -60,7 +68,7 @@ export default class MainLayout extends React.Component {
         
         <Header categories={categories}/>
         {children()}
-        <Footer/>
+        <Footer tags={tags}/>
       </div>
     );
   }
