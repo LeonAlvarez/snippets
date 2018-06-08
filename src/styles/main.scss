@@ -41,11 +41,13 @@
     border-radius: 0.25rem;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    &__title {
-        font-size: 2rem;
-        padding: 0.5rem 0;
+    &__header {
         border-bottom: 1px solid rgba(0, 32, 128, 0.1);
         margin-bottom: 1.25rem;
+        padding: 0.5rem 0;
+    }
+    &__title {
+        font-size: 2rem;
         margin-top: 0;
         line-height: 1.3;
     }

@@ -44,6 +44,10 @@ export default class MainLayout extends React.Component {
     }
     return title;
   }
+  getNestedMenu() {
+    const {edges} = this.props.data.allMarkdownRemark;
+    return this.groupBy(edges , edge => edge.node.frontmatter.category);
+  }
   getCategories() {
     const categories = new Set(
         this.props.data.allMarkdownRemark.edges
@@ -58,7 +62,11 @@ export default class MainLayout extends React.Component {
     );
     return Array.from(tags);
   }
+  groupBy(items , f) {
+    return items.reduce((l, e, o, n, x = f(e)) => ((l[x] || (l[x] = [])).push(e), l), {});
+  }
   render() {
+    console.log(this.getNestedMenu());
     const { children } = this.props; 
     const categories = this.getCategories();
     const tags = this.getTags();
