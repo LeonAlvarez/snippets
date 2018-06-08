@@ -3,9 +3,11 @@ import Helmet from "react-helmet";
 import config from "../../data/SiteConfig";
 import Header from "./Header";
 import Footer from "./Footer";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar";  
 import "./index.css";
-import "../styles/main.scss";
+import "../styles/main.scss"; 
+import "../../node_modules/prismjs/themes/prism-tomorrow.css";
+import "prismjs/plugins/keep-markup/prism-keep-markup.js";
 
 export default class MainLayout extends React.Component {
   getLocalTitle() {

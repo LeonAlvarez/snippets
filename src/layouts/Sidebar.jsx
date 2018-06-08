@@ -5,13 +5,12 @@ import config from "../../data/SiteConfig";
 
 class Sidebar extends React.Component {
   renderMenuItem(item) {
-    const link = { path: item, label: item.toUpperCase() };
     return (
       <Link
-        to={`/tags/${lodash.kebabCase(link.path)}`} key={link.path}
-        className="block p-4 text-white font-bold border-purple hover:bg-grey-lighter border-l-4"
+        to={`/tags/${lodash.kebabCase(item)}`} key={item}
+        className="block capitalize no-underline p-4 m-1 text-white text-base font-medium border-grey-darker hover:text-teal-light hover:border-pink-lighter hover:bg-indigo-dark border-l-2"
       >
-        {link.label}
+        {item}
       </Link>
     ); 
   }
