@@ -25,15 +25,15 @@
 
 .index-container,
 .tag-container,
-.category-container {
+.category-container,
+.snippet-container {
     background-color: #f6f7fd;
-    padding: 7rem 2% 0 2%;
-    max-width: calc(100% - 16rem);
-    width: 100%;
+    padding: 0 2%;
+    max-width: 64rem;
     margin: 0 auto;
 }
 
-.snippet {
+.snippet{
     position: relative;
     background: #fff;
     padding: 2rem 5%;

@@ -1,0 +1,30 @@
+        
+.header {
+    position: fixed;
+    width: 100%;
+    background: #5b67ff;
+    background: linear-gradient(45deg,#5cd2ff,#5b67ff,#681ae4);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+    top:0;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+.sidebar {
+    background: linear-gradient(-30deg,#2a3d67,#14264e);
+}
+
+.sidebar,
+.index-container,
+.tag-container,
+.category-container {
+    padding-top: 7rem;
+}   
+
+.index-container,
+.tag-container,
+.category-container {
+    background-color: #f6f7fd;
+}   
