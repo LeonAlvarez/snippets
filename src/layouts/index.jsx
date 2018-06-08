@@ -82,7 +82,7 @@ export default class MainLayout extends React.Component {
 
 /* eslint no-undef: "off"*/
 export const postCategoriesAndTags = graphql`
-  query IndexQuery2 {
+  query postCategoriesAndTagsQuery {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
