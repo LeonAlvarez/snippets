@@ -46,9 +46,11 @@
     width: 100%;
     margin: 0 auto;
     margin-left: 16rem;
+    min-height: calc(100vh - 87px);
     @media screen and (max-width: 992px) {
         margin: 0 auto;
         max-width: 100%;
+        min-height: calc(100vh - 62px);
     }
 }
 
