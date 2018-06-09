@@ -120,7 +120,6 @@ module.exports = {
                 date: edge.node.frontmatter.date,
                 title: edge.node.frontmatter.title,
                 description: edge.node.excerpt,
-                difficulty: edge.node.frontmatter.difficulty,
                 author: rssMetadata.author,
                 url: rssMetadata.site_url + edge.node.fields.slug,
                 guid: rssMetadata.site_url + edge.node.fields.slug,
@@ -145,7 +144,6 @@ module.exports = {
                       date
                       category
                       tags
-                      difficulty
                     }
                   }
                 }
