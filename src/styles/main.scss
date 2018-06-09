@@ -74,10 +74,27 @@
         line-height: 1.3;
         text-decoration: none;
     }
+    &__preview {
+        max-height: 30vh;
+        overflow: auto;
+        overflow-y: scroll;
+        background: white;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(
+            rgba(255, 255, 255, 0.001),
+            white
+            ); /* transparent keyword is broken in Safari */
+            pointer-events: none;
+        }
+    }
 }
 
 
-  
 
 .post-tag-container {
     margin-left: auto

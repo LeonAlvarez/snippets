@@ -40,7 +40,7 @@ const drawPost= (post) => (
       </Link>
       <PostTags tags={post.tags} />
     </div>
-    <div dangerouslySetInnerHTML={{ __html: post.html }} />
+    <div className="snippet__preview" dangerouslySetInnerHTML={{ __html: post.html }} />
   </div>
 );
   
