@@ -17,7 +17,7 @@ class Sidebar extends React.Component {
 export const renderMenuCategory = (item) => (
   <li>
     <Link
-      to={`/tags/${lodash.kebabCase(item.category)}`} 
+      to={`/categories/${lodash.kebabCase(item.category)}`} 
       key={item.category}
       className="block capitalize no-underline p-4 m-1 text-white text-base font-medium hover:text-teal-light"
     >
