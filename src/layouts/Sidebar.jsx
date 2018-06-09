@@ -4,7 +4,6 @@ import lodash from "lodash";
 
 class Sidebar extends React.Component {
   render() {
-    console.log(this.props.menuItems);
     return (
       <div className={`${this.props.opened ? 'open' : ''} sidebar shadow fixed w-64`}>
         <ul className="list-reset">
@@ -15,7 +14,7 @@ class Sidebar extends React.Component {
   }
 }
 export const renderMenuCategory = (item, onClickHandler) => (
-  <li key={item.slug}>
+  <li key={item.category}>
     <Link
       to={`/categories/${lodash.kebabCase(item.category)}`} 
       onClick={onClickHandler}
