@@ -10,6 +10,11 @@ import "../../node_modules/prismjs/themes/prism-tomorrow.css";
 import "prismjs/plugins/keep-markup/prism-keep-markup.js";
 
 export default class MainLayout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {sidebarOpened: false};  
+    this.toogleeSidebar = this.toogleeSidebar.bind(this);
+  }
   getLocalTitle() {
     function capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -71,6 +76,11 @@ export default class MainLayout extends React.Component {
     );
     return Array.from(tags);
   }
+  toogleeSidebar() {
+    this.setState({
+      sidebarOpened: !this.state.sidebarOpened  
+    });
+  }
   render() {
     const { children } = this.props; 
     const categories = this.getCategories();
@@ -82,9 +92,9 @@ export default class MainLayout extends React.Component {
           <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
           <meta name="description" content={config.siteDescription} />
         </Helmet>
-        <Header categories={categories} />
+        <Header toogleeSidebar={this.toogleeSidebar} categories={categories} />
         <div className="min-h-screen main-container md:flex">
-          <Sidebar tags={tags} menuItems={menuItems} />
+          <Sidebar toogleeSidebar={this.toogleeSidebar} opened={this.state.sidebarOpened} tags={tags} menuItems={menuItems} />
           {children()}
         </div>
       </div>

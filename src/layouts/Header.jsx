@@ -23,7 +23,7 @@ class Header extends React.Component {
             </span>
           </Link>
 
-          <button className="block md:hidden border border-white flex items-center px-3 py-2 rounded">
+          <button onClick={this.props.toogleeSidebar} className="block md:hidden border border-white flex items-center px-3 py-2 rounded">
             <svg
               className="fill-current h-3 w-3"
               viewBox="0 0 20 20"
