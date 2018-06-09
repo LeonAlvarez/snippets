@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "gatsby-link";
+import PostTags from "../PostTags/PostTags";  
 
 class PostListing extends React.Component {
   getPostList() {
+    console.log(this.props.postEdges);
     const postList = [];
     this.props.postEdges.forEach(postEdge => {
       postList.push({
@@ -12,7 +14,8 @@ class PostListing extends React.Component {
         title: postEdge.node.frontmatter.title,
         date: postEdge.node.frontmatter.date,
         excerpt: postEdge.node.excerpt,
-        timeToRead: postEdge.node.timeToRead
+        timeToRead: postEdge.node.timeToRead, 
+        html: postEdge.node.html
       });
     });
     return postList;
@@ -22,14 +25,24 @@ class PostListing extends React.Component {
     return (
       <div>
         {/* Your post list here. */
-        postList.map(post => (
-          <Link to={post.path} key={post.title}>
-            <h1>{post.title}</h1>
-          </Link>
-        ))}
+          postList.map(post => drawPost(post))
+        }
       </div>
     );
   }
 }
+
+const drawPost= (post) => (
+  <div key={post.path} className="snippet">
+    <div className="snippet__header">
+      <Link className="no-underline" to={post.path} key={post.title}>
+        <h1 className="snippet__title">{post.title}</h1>
+      </Link>
+      <PostTags tags={post.tags} />
+    </div>
+    <div dangerouslySetInnerHTML={{ __html: post.html }} />
+  </div>
+);
+  
 
 export default PostListing;

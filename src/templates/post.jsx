@@ -6,8 +6,7 @@ import PostTags from "../components/PostTags/PostTags";
 import SocialLinks from "../components/SocialLinks/SocialLinks";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
-import "./b16-tomorrow-dark.css";
-import "./post.css";
+import "../styles/b16-tomorrow-dark.css";
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -27,7 +26,7 @@ export default class PostTemplate extends React.Component {
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
         <div className="snippet">
-          <div className="snippet_header">
+          <div className="snippet__header">
             <h1 className="snippet__title">{post.title}</h1>
             <PostTags tags={post.tags} />
           </div>
@@ -36,7 +35,7 @@ export default class PostTemplate extends React.Component {
             <PostTags tags={post.tags} />
             <SocialLinks postPath={slug} postNode={postNode} />
           </div>
-          <UserInfo config={config} />
+          {/* <UserInfo config={config} /> */}
           {/*  <Disqus postNode={postNode} /> */}
         </div>
       </div>
