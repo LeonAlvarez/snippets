@@ -2,6 +2,39 @@ const config = require("./data/SiteConfig");
 
 const pathPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix;
 
+// gatsby-config.js
+const query = `{
+  allMarkdownRemark {
+    edges {
+      node {
+        excerpt
+        timeToRead
+        frontmatter {
+          title
+          tags
+          category
+          date
+          slug
+        } 
+        objectID: id
+        internal {
+          type
+          contentDigest
+          owner
+        }
+      }
+    }
+  } 
+}`;
+
+const queries = [
+  {
+    query,
+    transformer: ({ data }) => data.allSitePage.edges.map(({ node }) => node), // optional
+    indexName: 'snippets', // overrides main index name, optional
+  },
+];
+
 module.exports = {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
@@ -17,6 +50,16 @@ module.exports = {
     }
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: '6HTXP5S463',
+        apiKey: '997ff37a20cb695fb0ba11ac3683daef',
+        indexName: "snippets", // for all queries
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
