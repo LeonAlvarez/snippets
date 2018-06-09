@@ -45,9 +45,18 @@ export default class MainLayout extends React.Component {
     return title;
   }
   getNestedMenu() {
-    const {edges} = this.props.data.allMarkdownRemark;
-    return this.groupBy(edges , edge => edge.node.frontmatter.category);
-  }
+    const data =  this.props.data.allMarkdownRemark.edges
+    .map(edge => {
+      const {category, tags} = edge.node.frontmatter;
+      return {category, tags};     
+    });
+    const categories = groupBy(data , el => el.category);
+    return Object.entries(categories)
+    .map( category => ({
+      category: category[0],
+      tags: Array.from(new Set([].concat(...category[1].map( cat => cat.tags))))
+    }));  
+  } 
   getCategories() {
     const categories = new Set(
         this.props.data.allMarkdownRemark.edges
@@ -62,13 +71,10 @@ export default class MainLayout extends React.Component {
     );
     return Array.from(tags);
   }
-  groupBy(items , f) {
-    return items.reduce((l, e, o, n, x = f(e)) => ((l[x] || (l[x] = [])).push(e), l), {});
-  }
   render() {
-    console.log(this.getNestedMenu());
     const { children } = this.props; 
     const categories = this.getCategories();
+    const menuItems = this.getNestedMenu();
     const tags = this.getTags();
     return (
       <div>
@@ -78,7 +84,7 @@ export default class MainLayout extends React.Component {
         </Helmet>
         <Header categories={categories} />
         <div className="min-h-screen md:flex">
-          <Sidebar tags={tags} />
+          <Sidebar tags={tags} menuItems={menuItems} />
           {children()}
         </div>
         <Footer tags={tags} />
@@ -87,8 +93,12 @@ export default class MainLayout extends React.Component {
   }
 };
 
+/* eslint-disable */
+export const groupBy = (items , f) => items
+  .reduce((l, e, o, n, x = f(e)) => ((l[x] || (l[x] = [])).push(e), l), {});
+/* eslint-enable */
 
-/* eslint no-undef: "off"*/
+/* eslint no-undef: "off" */
 export const postCategoriesAndTags = graphql`
   query postCategoriesAndTagsQuery {
     allMarkdownRemark(

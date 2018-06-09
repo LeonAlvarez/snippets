@@ -6,7 +6,7 @@ date: "01/03/2018"
 slug: "bouncing-loader2"
 tags:
     - animation
-    - loader
+    - loader2
 
 ---
 
