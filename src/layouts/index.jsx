@@ -50,7 +50,7 @@ export default class MainLayout extends React.Component {
       const {category, tags} = edge.node.frontmatter;
       return {category, tags};     
     });
-    const categories = groupBy(data , el => el.category);
+    const categories =  groupBy(data , el => el.category);
     return Object.entries(categories)
     .map( category => ({
       category: category[0],
@@ -83,11 +83,10 @@ export default class MainLayout extends React.Component {
           <meta name="description" content={config.siteDescription} />
         </Helmet>
         <Header categories={categories} />
-        <div className="min-h-screen md:flex">
+        <div className="min-h-screen main-container md:flex">
           <Sidebar tags={tags} menuItems={menuItems} />
           {children()}
         </div>
-        <Footer tags={tags} />
       </div>
     );
   }
