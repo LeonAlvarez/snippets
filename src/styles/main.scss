@@ -121,3 +121,28 @@
         display: block;
     }
 }
+
+.search {
+    svg {
+        font-size: 20px;
+        width: 60px;
+        fill: white;
+    }
+}
+
+.ais-SearchBox {
+    width: 80%;
+    margin: 20px auto;
+    &-input {
+        height: 60px;
+        padding-left: 50px;
+    }
+    &-submit {
+        left: 1rem;
+    }
+}
+
+.search-result{
+    width:100%;
+    display:block;
+}

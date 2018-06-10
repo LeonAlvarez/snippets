@@ -43,7 +43,7 @@ class Header extends React.Component {
                 className="hidden md:flex md:items-center w-full md:w-auto"
               >
                 <div className="text-sm">
-                    <button onClick={toggleSearch}>
+                    <button className="search" onClick={toggleSearch}>
                       <FaSearch/>
                     </button> 
                     <SearchModalWindow searchOpened={searchOpened} toggleSearch={toggleSearch} algolia={this.props.algolia} />    
