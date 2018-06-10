@@ -99,3 +99,25 @@
 .post-tag-container {
     margin-left: auto
 }
+
+.search-container {
+    position: fixed;
+    display: none;
+    top: 86px;
+    width: calc(100% - 16rem);
+    right: 0;
+    background-color: #f6f7fd;
+    height: calc(100vh - 86px);
+    .ais-Hits-list {
+        margin-top: 1rem;
+        margin-left: unset;
+        .ais-Hits-item {
+            flex-direction: column;
+            margin: 1rem auto;
+            width: 80%;
+        } 
+    }
+    &.open {
+        display: block;
+    }
+}

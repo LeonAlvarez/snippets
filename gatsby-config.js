@@ -1,4 +1,5 @@
 const config = require("./data/SiteConfig");
+require("dotenv").config();
 
 const pathPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix;
 
@@ -30,7 +31,7 @@ const query = `{
 const queries = [
   {
     query,
-    transformer: ({ data }) => data.allSitePage.edges.map(({ node }) => node), // optional
+    transformer: ({ data }) => data.allMarkdownRemark.edges.map(({ node }) => node), // optional
     indexName: 'snippets', // overrides main index name, optional
   },
 ];
@@ -39,6 +40,13 @@ module.exports = {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
     siteUrl: config.siteUrl + pathPrefix,
+    algolia: {
+      appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : "",
+      searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+        ? process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+        : "",
+      indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : ""
+    },
     rssMetadata: {
       site_url: config.siteUrl + pathPrefix,
       feed_url: config.siteUrl + pathPrefix + config.siteRss,
@@ -47,15 +55,15 @@ module.exports = {
       image_url: `${config.siteUrl + pathPrefix}/logos/logo-512.png`,
       author: config.userName,
       copyright: config.copyright
-    }
+    },
   },
   plugins: [
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: '6HTXP5S463',
-        apiKey: '997ff37a20cb695fb0ba11ac3683daef',
-        indexName: "snippets", // for all queries
+        appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : "",
+        apiKey: process.env.ALGOLIA_ADMIN_API_KEY ? process.env.ALGOLIA_ADMIN_API_KEY : "",
+        indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : "",
         queries,
         chunkSize: 10000, // default: 1000
       },
@@ -90,7 +98,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: config.googleAnalyticsID
+        trackingId: process.env.GOOGLE_ANALYTICS_ID
       }
     },
     {
@@ -199,5 +207,6 @@ module.exports = {
       }
     },
     "gatsby-plugin-sass",
+    `gatsby-plugin-react-next`,
   ]
 };

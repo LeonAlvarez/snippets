@@ -7,7 +7,7 @@ class Sidebar extends React.Component {
     return (
       <div className={`${this.props.opened ? 'open' : ''} sidebar shadow fixed w-64`}>
         <ul className="list-reset">
-          {this.props.menuItems.map(menuItem => renderMenuCategory(menuItem, this.props.toogleeSidebar))}
+          {this.props.menuItems.map(menuItem => renderMenuCategory(menuItem, this.props.toggleSidebar))}
         </ul>
       </div>
     );

@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === "production") {
     /* eslint import/no-webpack-loader-syntax: off */
     inlinedStyles = require("!raw-loader!../public/styles.css");
   } catch (e) {
-    /* eslint no-console: "off"*/
+    /* eslint no-console: "off" */
     console.log(e);
   }
 }
@@ -35,7 +35,7 @@ export default class HTML extends React.Component {
             content="width=device-width, initial-scale=1.0"
           />
           {this.props.headComponents}
-          <link rel="shortcut icon" href={favicon} />
+          <link rel="shortcut icon" href={favicon} />      
           {css}
         </head>
         <body>

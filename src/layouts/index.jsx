@@ -5,15 +5,24 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";  
 import "./index.css";
+import "../styles/algolia.css";
 import "../styles/main.scss"; 
 import "../../node_modules/prismjs/themes/prism-tomorrow.css";
 import "prismjs/plugins/keep-markup/prism-keep-markup.js";
+import {LayoutContext} from "./layout-context";
 
 export default class MainLayout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sidebarOpened: false};  
-    this.toogleeSidebar = this.toogleeSidebar.bind(this);
+    this.toggleSearch = () => {
+      this.setState(state => ({searchOpened:!state.searchOpened}));
+    };
+    this.state = {
+      sidebarOpened: false,
+      searchOpened: false,
+      toggleSearch: this.toggleSearch
+    };  
+    this.toggleSidebar = this.toggleSidebar.bind(this);
   }
   getLocalTitle() {
     function capitalize(string) {
@@ -76,28 +85,32 @@ export default class MainLayout extends React.Component {
     );
     return Array.from(tags);
   }
-  toogleeSidebar() {
+  toggleSidebar() {
     this.setState({
       sidebarOpened: !this.state.sidebarOpened  
     });
   }
+  
   render() {
     const { children } = this.props; 
     const categories = this.getCategories();
     const menuItems = this.getNestedMenu();
     const tags = this.getTags();
+    const {algolia} = this.props.data.site.siteMetadata;
     return (
-      <div>
-        <Helmet>
-          <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
-          <meta name="description" content={config.siteDescription} />
-        </Helmet>
-        <Header toogleeSidebar={this.toogleeSidebar} categories={categories} />
-        <div className="min-h-screen main-container md:flex">
-          <Sidebar toogleeSidebar={this.toogleeSidebar} opened={this.state.sidebarOpened} tags={tags} menuItems={menuItems} />
-          {children()}
+      <LayoutContext.Provider value={this.state}>
+        <div>
+          <Helmet>
+            <title>{`${config.siteTitle} |  ${this.getLocalTitle()}`}</title>
+            <meta name="description" content={config.siteDescription} />
+          </Helmet>
+          <Header algolia={algolia} toggleSidebar={this.toggleSidebar} categories={categories} />
+          <div className="min-h-screen main-container md:flex">
+            <Sidebar toggleSidebar={this.toggleSidebar} opened={this.state.sidebarOpened} tags={tags} menuItems={menuItems} />
+            {children()}
+          </div>
         </div>
-      </div>
+      </LayoutContext.Provider>
     );
   }
 };
@@ -121,6 +134,15 @@ export const postCategoriesAndTags = graphql`
             tags
             title
           }
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        algolia {
+          appId
+          searchOnlyApiKey
+          indexName
         }
       }
     }
