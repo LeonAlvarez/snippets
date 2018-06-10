@@ -28,6 +28,10 @@ class Header extends React.Component {
                   {config.siteTitle}
                 </span>
               </Link>
+              <button className="search" onClick={toggleSearch}>
+                <FaSearch/>
+              </button> 
+              <SearchModalWindow searchOpened={searchOpened} toggleSearch={toggleSearch} algolia={this.props.algolia} />    
               <button onClick={this.props.toggleSidebar} className="block md:hidden border border-white flex items-center px-3 py-2 rounded">
                 <svg
                   className="fill-current h-3 w-3"
@@ -43,10 +47,6 @@ class Header extends React.Component {
                 className="hidden md:flex md:items-center w-full md:w-auto"
               >
                 <div className="text-sm">
-                    <button className="search" onClick={toggleSearch}>
-                      <FaSearch/>
-                    </button> 
-                    <SearchModalWindow searchOpened={searchOpened} toggleSearch={toggleSearch} algolia={this.props.algolia} />    
                   {
                     this.props.categories.map(category => this.renderMenuItem(category))
                   }

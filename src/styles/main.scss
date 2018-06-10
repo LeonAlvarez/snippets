@@ -108,6 +108,11 @@
     right: 0;
     background-color: #f6f7fd;
     height: calc(100vh - 86px);
+    @media screen and (max-width: 992px) {
+        top: 62px;
+        width: 100%;
+        height: calc(100vh - 62px);
+    }
     .ais-Hits-list {
         margin-top: 1rem;
         margin-left: unset;
@@ -123,6 +128,10 @@
 }
 
 .search {
+    margin-left: auto;
+    @media screen and (max-width: 992px) {
+        margin-left: unset;
+    }
     svg {
         font-size: 20px;
         width: 60px;
