@@ -1,5 +1,5 @@
 ---
-title: "Test
+title: "Test"
 cover: "https://unsplash.it/400/300/?random?BigTest"
 category: "css"
 date: "01/03/2018"
