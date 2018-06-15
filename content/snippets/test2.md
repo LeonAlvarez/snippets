@@ -1,12 +1,12 @@
 ---
-title: "Bouncing loader2"
+title: "Test"
 cover: "https://unsplash.it/400/300/?random?BigTest"
-category: "css"
+category: "test category"
 date: "01/03/2018"
 slug: "bouncing-loader2"
 tags:
-    - animation
-    - loader2
+    - test tag
+    - another test tag
 
 ---
 
