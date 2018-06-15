@@ -32,7 +32,7 @@ const queries = [
   {
     query,
     transformer: ({ data }) => data.allMarkdownRemark.edges.map(({ node }) => node), // optional
-    indexName: 'snippets', // overrides main index name, optional
+    indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : "", // overrides main index name, optional
   },
 ];
 

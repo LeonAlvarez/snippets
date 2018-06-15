@@ -1,8 +1,6 @@
 import React from "react";
-import { InstantSearch, Hits, RefinementList, Pagination, Configure } from "react-instantsearch/dom";
-import SearchBox from "./SearchBox";
-import SearchInput from "./SearchInput";
-import Hit from "./Hit";
+import { InstantSearch, Pagination, Configure } from "react-instantsearch/dom";
+import ConnectedWithQueryMatching from "./ConnectedWithQueryMatching";
 
 class Search extends React.Component {
   render() {
@@ -16,15 +14,8 @@ class Search extends React.Component {
             indexName={algolia.indexName}
             render={false}
           >
-            <Configure hitsPerPage={20} />
-            <SearchBox />
-            <div className="twoColumns">
-              <RefinementList attribute="brand" />
-              <Hits hitComponent={Hit} />
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <Pagination />
-            </div>
+            <Configure hitsPerPage={5} />
+            <ConnectedWithQueryMatching />
           </InstantSearch>
         )}
       </div> 
